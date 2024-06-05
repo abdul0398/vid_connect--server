@@ -8,3 +8,9 @@ export type User = {
     created_at: string;
     updated_at: string;
 }
+
+
+export type AuthFields = {
+    email:string,
+    password:string
+}

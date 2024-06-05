@@ -1,14 +1,16 @@
 import express, {Application} from 'express';
 // import cors from 'cors';
 import morgan from 'morgan';
+import userRouter from '../routes/user';
 import bodyParser from 'body-parser';
 import 'dotenv/config'
 
 function configureApp(app : Application) {
     // app.use(cors()); // Enable CORS
-    app.use(morgan('combined')); // HTTP request logger
+    app.use(morgan('dev')); // HTTP request logger
     app.use(bodyParser.json()); // Parse JSON request bodies
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use([userRouter]);
 }
 
 export async function initialiseServer() {
