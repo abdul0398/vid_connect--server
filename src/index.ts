@@ -1,6 +1,5 @@
 import  DatabaseManager  from "./db/db";
 import { initialiseServer } from "./services/express";
-
 async function startApp(){
     try {
         await initialiseServer();

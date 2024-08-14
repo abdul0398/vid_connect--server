@@ -1,20 +1,15 @@
-import express, {Router , Request, Response} from "express";
-import {validateSignup, validateSignupRules} from "../middlewares/validateInputs";
+import express, {Router} from "express";
+import {validateSignIn, validateSignInRules, validateSignUp, validateSignUpRules} from "../middlewares/validateInputs";
+import { signInController, signUpController } from "../controllers/user";
+import { isAuthorize } from "../middlewares/validateUser";
 const router :Router = express.Router();
 
 
-router.get("/user", async (req :Request, res : Response) => {
-    res.send("Hello from user route");
-}).post("/auth/signup", validateSignupRules, validateSignup, async (req :Request, res : Response) => {
-
-
-    console.log(req.body);
-
-
-
-
-
+router
+.post("/auth/signup", validateSignUpRules, validateSignUp, signUpController)
+.post("/auth/signin", validateSignInRules, validateSignIn,  signInController)
+.get("/user/getUser", isAuthorize, (req,res)=>{
+    console.log("Authorized")
 })
-
 
 export default router;

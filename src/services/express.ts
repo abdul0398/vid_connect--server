@@ -26,7 +26,6 @@ export async function initialiseServer() {
                 resolve(app);
             });
 
-            // Handle graceful shutdown
             const gracefulShutdown = () => {
                 console.log('Shutting down server gracefully...');
                 server.close((err) => {
